@@ -1,8 +1,6 @@
 <h1>Hola Mundo!</h1>
 
-<form>
-
+<form method="POST" action="">{% csrf_token %}
 {{ form.as_p }}
 <input type='submit' value='Registrame'>
-
 </form>
