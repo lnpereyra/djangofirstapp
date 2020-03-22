@@ -2,14 +2,21 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block head_title %}Bienvenidos | {{ block.super }}{% endblock %}
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
 
-{% block jumbotron_content %}
+{% block jumbotron %}
+    <div class="jumbotron">
 
+<div class='row'>
+    <div class='col-sm-6'>
         <h1>Django</h1>
-        <p class="lead">My first app</p>
-        <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">View navbar docs &raquo;</a>
-
+        <p class="lead">My first app objective is to build a web app simple and elegant in a short period of time</p>
+        <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">Suscribe &raquo;</a>
+    </div>
+    <div class='col-sm-6' style='background-color:black; height:450px;'></div>
+    
+    </div>
+</div>
 {% endblock %}
 
 {{ titulo }}
@@ -17,10 +24,23 @@
 <br/>
 
 {% block content %}
-
-<form method="POST" action="">{% csrf_token %}
-{{ form|crispy }}
-<input type='submit' value='Registrame'>
-</form>
+<div class='row'>
+    <div class='col-sm-3 col-xs-12'>
+    <p class='lead text-align-center'>{{ titulo }}</p>
+        <form method="POST" action="">{% csrf_token %}
+        {{ form|crispy }}
+        <input class='btn btn-primary' type='submit' value='Suscribe'>
+        </form>
+    </div>
+<div class='col-sm-3'>
+    <p class='lead text-align-center' >Created with Django and Bootstrap</p>
+</div>
+<div class='col-sm-3'>
+    <p class='lead text-align-center'>With dedication and love</p>
+</div>
+<div class='col-sm-3'>
+    <p class='lead text-align-center'>Lucas Pereyra</p>
+</div>
+</div>
 
 {% endblock %}
