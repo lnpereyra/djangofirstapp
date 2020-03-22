@@ -4,10 +4,19 @@
 
 {% block head_title %}Welcome | {{ block.super }}{% endblock %}
 
-{% block jumbotron %}
-    <div class="jumbotron">
+<style>
+{% block style %}
+.jumbotron {
+    background-color: #e6e7e8 !important;
+}
+{% endblock %}
+</style>
 
-<div class='row'>
+{% block jumbotron %}
+<div class="jumbotron">
+    <main role="main" class="container-fluid">
+
+<div class='row justify-content-center'>
     <div class='col-sm-6'>
         <h1>Django</h1>
         <p class="lead">My first app objective is to build a web app simple and elegant in a short period of time</p>
@@ -17,6 +26,7 @@
     
     </div>
 </div>
+</main>
 {% endblock %}
 
 {{ titulo }}
