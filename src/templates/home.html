@@ -1,12 +1,13 @@
 <!-- <h1>Hola Mundo!</h1> -->
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}Bienvenidos | {{ block.super }}{% endblock %}
 
 {% block jumbotron_content %}
 
-        <h1>Inicio</h1>
-        <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
+        <h1>Django</h1>
+        <p class="lead">My first app</p>
         <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">View navbar docs &raquo;</a>
 
 {% endblock %}
@@ -18,7 +19,7 @@
 {% block content %}
 
 <form method="POST" action="">{% csrf_token %}
-{{ form.as_p }}
+{{ form|crispy }}
 <input type='submit' value='Registrame'>
 </form>
 
