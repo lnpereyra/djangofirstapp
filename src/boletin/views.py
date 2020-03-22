@@ -36,7 +36,11 @@ def home(request):
         print (instance)
         print (instance.timestamp)
 
-
+    if request.user.is_authenticated and request.user.is_staff:
+        queryset = Registrado.objects.all().order_by('-timestamp')  
+        context = {
+            "queryset": queryset,
+        }
     return render(request, "home.html", context)
 
 def contact(request):

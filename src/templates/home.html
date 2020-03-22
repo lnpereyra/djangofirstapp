@@ -13,6 +13,8 @@
 </style>
 
 {% block jumbotron %}
+
+
 <div class="jumbotron">
     <main role="main" class="container-fluid">
 
@@ -22,11 +24,14 @@
         <p class="lead">My first app objective is to build a web app simple and elegant in a short period of time</p>
         <a class="btn btn-lg btn-primary" href="/docs/4.4/components/navbar/" role="button">Suscribe &raquo;</a>
     </div>
-    <div class='col-sm-6' style='background-color:black; height:450px;'></div>
-    
+    <div class='col-sm-6' align="center">
+    <iframe width="660" height="385" src="https://www.youtube.com/embed/yRP0tgMT6AM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+    </div>  
     </div>
 </div>
 </main>
+
 {% endblock %}
 
 {{ titulo }}
@@ -34,23 +39,76 @@
 <br/>
 
 {% block content %}
+{% if request.user.is_staff %}
 <div class='row'>
     <div class='col-sm-3 col-xs-12'>
-    <p class='lead text-align-center'>{{ titulo }}</p>
-        <form method="POST" action="">{% csrf_token %}
-        {{ form|crispy }}
-        <input class='btn btn-primary' type='submit' value='Suscribe'>
-        </form>
+    <p class='lead text-align-center'>{{ titulo }}<br/>
+        {% if not user.is_authenticated %}
+            <form method="POST" action="">{% csrf_token %}
+                {{ form|crispy }}
+                <input class='btn btn-primary' type='submit' value='Suscribe'>
+            </form>
+        {% else %}  
+            <i class="fas fa-laptop-code fa-5x" style="padding-top: 30px;"></i>
+        {% endif %}
+    </p>
     </div>
 <div class='col-sm-3'>
-    <p class='lead text-align-center' >Created with Django and Bootstrap</p>
+    <p class='lead text-align-center' >Created with Django and Bootstrap<br/>
+    <i class="fab fa-python fa-5x" style="padding-top: 30px;" ></i> <i class="fab fa-bootstrap fa-5x"></i>
+    </p>
 </div>
 <div class='col-sm-3'>
-    <p class='lead text-align-center'>With dedication and love</p>
+    <p class='lead text-align-center'>With dedication and love<br/>
+    <i class="fas fa-code-branch fa-5x" style="padding-top: 30px;"></i>
+    </p>
 </div>
 <div class='col-sm-3'>
-    <p class='lead text-align-center'>Lucas Pereyra</p>
+    <p class='lead text-align-center'>Lucas Pereyra<br/>
+    <i class="fas fa-jedi fa-5x" style="padding-top: 30px;"></i>
+    </p>
 </div>
 </div>
-
+<div>
+    <table class='table'>
+        {% for instance in queryset %}
+            <tr><td>{{ forloop.counter }}</td>
+            <td>{{instance}}</td>
+            <td>{{instance.nombre}}<td>
+            <td>{{instance.timestamp|timesince}} ago<td>
+            <tr><br/>
+        {%endfor%}
+    </table>
+</div>
+{% else %}
+<div class='row'>
+    <div class='col-sm-3 col-xs-12'>
+    <p class='lead text-align-center'>{{ titulo }}<br/>
+        {% if not user.is_authenticated %}
+            <form method="POST" action="">{% csrf_token %}
+                {{ form|crispy }}
+                <input class='btn btn-primary' type='submit' value='Suscribe'>
+            </form>
+        {% else %}  
+            <i class="fas fa-laptop-code fa-5x" style="padding-top: 30px;"></i>
+        {% endif %}
+    </p>
+    </div>
+<div class='col-sm-3'>
+    <p class='lead text-align-center' >Created with Django and Bootstrap<br/>
+    <i class="fab fa-python fa-5x" style="padding-top: 30px;" ></i> <i class="fab fa-bootstrap fa-5x"></i>
+    </p>
+</div>
+<div class='col-sm-3'>
+    <p class='lead text-align-center'>With dedication and love<br/>
+    <i class="fas fa-code-branch fa-5x" style="padding-top: 30px;"></i>
+    </p>
+</div>
+<div class='col-sm-3'>
+    <p class='lead text-align-center'>Lucas Pereyra<br/>
+    <i class="fas fa-jedi fa-5x" style="padding-top: 30px;"></i>
+    </p>
+</div>
+</div>
+{% endif %}
 {% endblock %}
